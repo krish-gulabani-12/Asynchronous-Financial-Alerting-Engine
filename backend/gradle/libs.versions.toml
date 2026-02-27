@@ -1,0 +1,24 @@
+# Version catalog for the backend (Spring Boot) project.
+# We pin library versions here so all modules use the same versions.
+# See: https://docs.gradle.org/current/userguide/platforms.html
+
+[versions]
+# Spring Boot BOM version — we use it to align all Spring dependencies.
+spring-boot = "3.2.5"
+junit = "5.10.2"
+
+[libraries]
+# Spring Boot starters bring in everything needed for a given feature.
+# starter-web = REST API (Tomcat + Spring MVC + JSON).
+spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "spring-boot" }
+# actuator = health, metrics, info endpoints (e.g. /actuator/health).
+spring-boot-starter-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator", version.ref = "spring-boot" }
+# For unit tests (JUnit 5 + Mockito + AssertJ).
+spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test", version.ref = "spring-boot" }
+junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
+
+[plugins]
+# Spring Boot plugin: provides bootRun, bootJar, and aligns dependency versions.
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+# Dependency management: applies Spring’s BOM so you don’t specify starter versions manually.
+spring-dependency-management = { id = "io.spring.dependency-management", version = "1.1.4" }
